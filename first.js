@@ -1,39 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client"
-import stores from "./stores";
-import { Provider } from "react-redux";
-import CoinCreate from "./CoinCreate";
+import Add from "./Add";
+
+function App(){ 
+     
+    const [language, setLanguage] = useState(["TS","JS","Java"])
+
+    function handleClick(){
+        setLanguage(["C++",...language]);
+    }
 
 
-function App(){
+    const VDom = <h1>Hello Coder Army</h1>
 
-    return (
-       <Provider store={stores}>
-        <CoinCreate></CoinCreate>
-       </Provider>
+    const RDom = document.createElement('h1');
+    RDom.innerText = "Hello Coder Army";
+
+    console.log(VDom);
+    console.dir(RDom);
+
+    return(
+        <>
+        <div style={{display:"flex", justifyContent:"center", gap:"20px" , marginTop:"50px"}}>
+            {
+                language.map((value,index)=> <Add key={value} value={value}></Add>)
+            }
+        </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <button onClick={handleClick}>Add language</button>
+        </>
     )
+
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App></App>);
 
-// function Fetchuser(){
-//     useEffect(async ()=>{
-    
-//      dispatch(LoadingData(true));
-//       try{
-//        const response = await fetch("Github User Info");
-//        const da = await response.json();
-//        dispatch(UpdateData(da));
-//       }
-//       catch(error){
-//         dispatch(ErrorData("Error Occured"));
-//       }      
-//     })
-// }
 
-// Object:{type: 'slice/LoadingData', payload:true};
-// {type: 'slice/UpdateData', payload:da};
-// {type: 'slice/ErrorData', payload:"Error Occured"};
-
-// Ek aur koi component ho, usko bhi fetch request:
-// Ek aur component bana diya:
